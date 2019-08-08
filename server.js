@@ -1,17 +1,19 @@
 const Koa = require('koa');
-const path = require('path');
+// const path = require('path');
 const config = require('config');
 const Router = require('koa-router');
 const body = require('koa-body');
 const mongoose = require('mongoose');
 const passport = require('./app/libs/passport/index');
 
-
 mongoose.connect(config.get('databaseUrl'), {
   useNewUrlParser: true,
   useCreateIndex: true,
 });
-module.exports = passport.initialize();
+
+// module.exports = passport.initialize();
+passport.initialize();
+
 // mongoose.connect('mongodb+srv://lerik1408:Okf123fu@cluster0-osbtr.gcp.mongodb.net/test?retryWrites=true&w=majority', {
 //   useNewUrlParser: true,
 //   useCreateIndex: true,
@@ -51,6 +53,4 @@ app.use(async (ctx, next) => {
 router.use('/auth', require('./app/auth/router').routes());
 
 app.use(router.routes());
-const PORT = process.env.PORT || 3000;
-// app.listen(PORT);
 app.listen(config.get('port'));

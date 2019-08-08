@@ -38,6 +38,9 @@ const userSchema = new mongoose.Schema({
   salt: {
     type: String,
   },
+  token: {
+    type: String,
+  },
 });
 
 userSchema.virtual('password')

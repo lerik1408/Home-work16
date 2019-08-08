@@ -2,10 +2,10 @@ const passport = require('koa-passport');
 const jwt = require('jwt-simple');
 const config = require('config');
 const User = require('./models/user');
+const Token = require('./models/token');
 
 exports.signUp = async (ctx) => {
   const { body } = ctx.request;
-  console.log(body.password);
   const user = new User({
     name: body.name,
     surname: body.surname,
@@ -29,9 +29,14 @@ exports.signIn = async (ctx, next) => {
     if (user) {
       const payload = {
         id: user._id,
+        email: user.email,
       };
+      const сipherToken = jwt.encode(payload, config.get('jwtSecret'));
+      const token = new Token({
+        token: сipherToken,
+      });
       ctx.body = {
-        token: jwt.encode(payload, config.get('jwtSecret')),
+        token: сipherToken,
         user: {
           name: user.name,
           surname: user.surname,
@@ -40,6 +45,7 @@ exports.signIn = async (ctx, next) => {
           photo: user.photo,
         },
       };
+      token.save();
     } else {
       ctx.body = {
         error: err,
@@ -48,7 +54,8 @@ exports.signIn = async (ctx, next) => {
   })(ctx, next);
 };
 exports.profile = async (ctx, next) => {
+  // passport.authenticate('jwt', { session: false });
   ctx.body = {
-    sec: true,
+    success: true,
   };
 };
