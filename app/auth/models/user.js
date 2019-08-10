@@ -1,3 +1,4 @@
+/* eslint-disable */
 const mongoose = require('mongoose');
 const config = require('config');
 const crypto = require('crypto');
@@ -11,17 +12,21 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  username:{
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     unique: true,
     required: true,
-    validate: {
-      validator: function checkEmail(value) {
-        const re = /^(\S+)@([a-z0-9-]+)(\.)([a-z]{2,4})(\.?)([a-z]{0,4})+$/;
-        return re.test(value);
-      },
-      message: props => `${props.value} is not a valid email.`,
-    },
+    // validate: {
+    //   validator: function checkEmail(value) {
+    //     const re = /^(\S+)@([a-z0-9-]+)(\.)([a-z]{2,4})(\.?)([a-z]{0,4})+$/;
+    //     return re.test(value);
+    //   },
+    //   message: props => `${props.value} is not a valid email.`,
+    // },
   },
   photo: {
     type: String,
@@ -29,8 +34,25 @@ const userSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ['Mr', 'Ms'],
-    default: 'Mr',
+    enum: ['Mr', 'Ms','undefined?'],
+    default: 'undefined?',
+  },
+  stack: {
+    type: String,
+    enum: ['Front-end','Back-end'],
+    default: 'Front-end',
+  },
+  country: {
+    type: String,
+    default: 'Ukraine',
+  },
+  dailyRate: {
+    type: Number,
+    default: 500,
+  },
+  rating: {
+    type: Number,
+    default: 3,
   },
   passwordHash: {
     type: String,

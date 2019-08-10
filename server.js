@@ -11,7 +11,6 @@ mongoose.connect(config.get('databaseUrl'), {
   useCreateIndex: true,
 });
 
-// module.exports = passport.initialize();
 passport.initialize();
 
 // mongoose.connect('mongodb+srv://lerik1408:Okf123fu@cluster0-osbtr.gcp.mongodb.net/test?retryWrites=true&w=majority', {

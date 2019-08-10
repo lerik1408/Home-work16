@@ -9,15 +9,10 @@ exports.signUp = async (ctx) => {
   const user = new User({
     name: body.name,
     surname: body.surname,
+    username: body.username,
     email: body.email,
     password: body.password,
   });
-  // const user = new User({
-  //   name: 'Vasya',
-  //   surname: 'Pupkin',
-  //   email: 'vasya@pupki1n.org',
-  //   password: 'qwdwdawewdwaedw',
-  // });
   await user.save();
   ctx.body = {
     registration: true,
@@ -57,5 +52,21 @@ exports.profile = async (ctx, next) => {
   // passport.authenticate('jwt', { session: false });
   ctx.body = {
     success: true,
+  };
+};
+exports.test = async (ctx, next) => {
+  // console.log(ctx);
+  // ctx.set('Access-Control-Allow-Origin', '*');
+  // ctx.res.writeHead('Access-Control-Allow-Origin', '*');
+  ctx.append('Access-Control-Allow-Origin', '*');
+  ctx.body = {
+    test: 'Hello',
+  };
+};
+exports.search = async (ctx, next) => {
+  const allPeople = await User.find({});
+  ctx.append('Access-Control-Allow-Origin', '*');
+  ctx.body = {
+    allPeople,
   };
 };
