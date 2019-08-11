@@ -2,7 +2,7 @@ const passport = require('koa-passport');
 const jwt = require('jwt-simple');
 const config = require('config');
 const User = require('./models/user');
-const Token = require('./models/token');
+// const Token = require('./models/token');
 
 exports.signUp = async (ctx) => {
   const { body } = ctx.request;
@@ -20,6 +20,11 @@ exports.signUp = async (ctx) => {
 };
 
 exports.signIn = async (ctx, next) => {
+  ctx.append('Access-Control-Allow-Origin', '*');
+  // let body = JSON.parse(ctx.request.body);
+  // let body = ctx.request.body;
+  // ctx.request.body=JSON.parse(ctx.request.body);
+  console.log(ctx.request.body);
   await passport.authenticate('local', (err, user) => {
     if (user) {
       const payload = {
@@ -27,9 +32,9 @@ exports.signIn = async (ctx, next) => {
         email: user.email,
       };
       const сipherToken = jwt.encode(payload, config.get('jwtSecret'));
-      const token = new Token({
-        token: сipherToken,
-      });
+      console.log(user.token);
+      // User.findByIdAndUpdate('user._id', { token: 'сipherToken' });
+      user.token = сipherToken;
       ctx.body = {
         token: сipherToken,
         user: {
@@ -38,9 +43,10 @@ exports.signIn = async (ctx, next) => {
           gender: user.gender,
           email: user.email,
           photo: user.photo,
+          token: user.token,
         },
       };
-      token.save();
+      user.save();
     } else {
       ctx.body = {
         error: err,
@@ -49,23 +55,41 @@ exports.signIn = async (ctx, next) => {
   })(ctx, next);
 };
 exports.profile = async (ctx, next) => {
-  // passport.authenticate('jwt', { session: false });
   ctx.body = {
     success: true,
   };
 };
 exports.test = async (ctx, next) => {
-  // console.log(ctx);
-  // ctx.set('Access-Control-Allow-Origin', '*');
-  // ctx.res.writeHead('Access-Control-Allow-Origin', '*');
+  const body = ctx.request.body;
+  console.log(body);
   ctx.append('Access-Control-Allow-Origin', '*');
   ctx.body = {
     test: 'Hello',
   };
 };
+
 exports.search = async (ctx, next) => {
-  const allPeople = await User.find({});
+  let allPeople = await User.find({});
   ctx.append('Access-Control-Allow-Origin', '*');
+  const id = await ctx.params.id;
+  if (id) {
+    if (id.split('').length === 24) {
+      // id
+      allPeople = await User.find({ _id: id });
+    } else {
+      // name
+      allPeople = await User.find({
+        $or: [
+          {
+            name: {
+              $regex: id,
+              $options: 'i',
+            },
+          },
+        ],
+      });
+    }
+  }
   ctx.body = {
     allPeople,
   };
