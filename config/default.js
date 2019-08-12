@@ -10,4 +10,9 @@ module.exports = {
     },
   },
   jwtSecret: 'sup3rs3cr3t123!^&*(',
+  aws: {
+    accessKeyId: 'AKIA5JL2RE4ZPZQWOHR4',
+    secretAccessKey: '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',
+    bucketName: 'myfixer-cloud',
+  },
 };

@@ -2,6 +2,8 @@
 const mongoose = require('mongoose');
 const config = require('config');
 const crypto = require('crypto');
+const Category = require('./category')
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -37,11 +39,13 @@ const userSchema = new mongoose.Schema({
     enum: ['Mr', 'Ms','undefined?'],
     default: 'undefined?',
   },
-  stack: {
-    type: String,
-    enum: ['Front-end','Back-end'],
-    default: 'Front-end',
-  },
+  stack: [{
+    ref: Category,
+    type: mongoose.Schema.Types.ObjectId,
+    // default: 'Front-end',
+  }],
+    // enum: ['Front-end','Back-end'],
+    // default: 'Front-end',
   country: {
     type: String,
     default: 'Ukraine',
