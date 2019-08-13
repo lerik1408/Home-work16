@@ -16,4 +16,6 @@ router.put('/photo', passport.authenticate('jwt', { session: false }), ctrl.upda
 
 router.post('/create-category', ctrl.createCategory);
 router.get('/category', ctrl.getCategory);
+
+router.get('/email', ctrl.sendEmail);
 module.exports = router;

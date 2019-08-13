@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const User = require('./models/user');
 const Category = require('./models/category');
 const uploadS3 = require('../utils/uploadS3');
+const email = require('../utils/sendEmail');
 
 exports.signUp = async (ctx) => {
   const idCatagory = await Category.find({});
@@ -29,6 +30,7 @@ exports.signIn = async (ctx, next) => {
   // let body = JSON.parse(ctx.request.body);
   // let body = ctx.request.body;
   // ctx.request.body=JSON.parse(ctx.request.body);
+  console.log(ctx.request.body);
   await passport.authenticate('local', (err, user) => {
     if (user) {
       const payload = {
@@ -126,6 +128,18 @@ exports.getCategory = async (ctx) => {
     categorys,
   };
 };
+exports.sendEmail = async (ctx) => {
+  await email(
+    'popruzhuk.38@gmail.com',
+    'dddd.@example.com',
+    'Hello',
+    'Text',
+    '<p>text</p>',
+  );
+  ctx.body = {
+    send: true,
+  };
+}
 // POPULATE
 // let a = await User.find({}).populate('stack');
 // await console.log(a[2].stack[0].name);
