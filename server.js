@@ -4,14 +4,19 @@ const config = require('config');
 const Router = require('koa-router');
 const body = require('koa-body');
 const mongoose = require('mongoose');
+const koaSwagger = require('koa2-swagger-ui');
+const serve = require('koa-static');
+const cors = require('@koa/cors');
 const passport = require('./app/libs/passport/index');
 
 mongoose.connect(config.get('databaseUrl'), {
   useNewUrlParser: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 });
 
 passport.initialize();
+
 
 // mongoose.connect('mongodb+srv://lerik1408:Okf123fu@cluster0-osbtr.gcp.mongodb.net/test?retryWrites=true&w=majority', {
 //   useNewUrlParser: true,
@@ -20,8 +25,19 @@ passport.initialize();
 
 
 const app = new Koa();
-const router = new Router();
-
+const router = new Router({
+  prefix: '/api',
+});
+app.use(serve('docs'));
+app.use(
+  koaSwagger({
+    routePrefix: '/docs',
+    swaggerOptions: {
+      url: 'http://localhost:3000/docs.yml', // example path to json
+    },
+  }),
+);
+app.use(cors());
 app.use(body({
   multipart: true,
 }));

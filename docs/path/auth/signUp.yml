@@ -1,0 +1,72 @@
+post:
+  summary: Sign Up
+  description:  Sign Up user
+  tags:
+    - Auth
+  security:
+    - ApiKeyAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            surname:
+              type: string
+            username:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            # stack
+  responses:
+    "200":
+      content:
+        application/json:
+          description: Registration User
+          schema:
+            type: object
+            properties:
+              registration:
+                type: object
+                properties:
+                  photo:
+                    type: string
+                    description: default user photo
+                  gender:
+                    type: string
+                    description: default "undefined?"
+                  stack:
+                    type: string
+                    description: default "ID Category Back-end"
+                  country:
+                    type: string
+                    description: default "Ukraine"
+                  dailyRate:
+                    type: number
+                    description: default "500"
+                  rating:
+                    type: number
+                    description: default "3" range(1-3)
+                  _id:
+                    type: string
+                  name:
+                    type: string
+                  surname:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  salt:
+                    type: string
+                  passwordHash:
+                    type: string
+                  __v:
+                    type: string
+
+    # default:
+    #   $ref: "../../models/error.yml"

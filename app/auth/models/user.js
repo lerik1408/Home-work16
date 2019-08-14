@@ -54,6 +54,9 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 500,
   },
+  mobile: {
+    type: String,
+  },
   rating: {
     type: Number,
     default: 3,
@@ -62,6 +65,9 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   salt: {
+    type: String,
+  },
+  company: {
     type: String,
   },
   token: {

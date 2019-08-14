@@ -21,12 +21,12 @@ exports.signUp = async (ctx) => {
   });
   await user.save();
   ctx.body = {
-    registration: true,
+    registration: user,
   };
 };
 
 exports.signIn = async (ctx, next) => {
-  ctx.append('Access-Control-Allow-Origin', '*');
+  // ctx.set('Access-Control-Allow-Origin', '*');
   // let body = JSON.parse(ctx.request.body);
   // let body = ctx.request.body;
   // ctx.request.body=JSON.parse(ctx.request.body);
@@ -61,8 +61,18 @@ exports.signIn = async (ctx, next) => {
   })(ctx, next);
 };
 exports.profile = async (ctx) => {
+  // eslint-disable-next-line no-underscore-dangle
+  const user = await User.findById(ctx.state.user._id);
   ctx.body = {
-    success: true,
+    user,
+  };
+};
+exports.profileUpdate = async (ctx) => {
+  const key = Object.keys(ctx.request.body)[0];
+  // eslint-disable-next-line no-underscore-dangle
+  await User.findByIdAndUpdate(ctx.state.user._id, { [key]: ctx.request.body[key] });
+  ctx.body = {
+    [key]: ctx.request.body[key],
   };
 };
 exports.test = async (ctx, next) => {
@@ -72,7 +82,6 @@ exports.test = async (ctx, next) => {
 
 exports.search = async (ctx) => {
   let allPeople = await User.find({}).populate('stack');
-  ctx.append('Access-Control-Allow-Origin', '*');
   const id = await ctx.params.id;
   if (id) {
     if (id.split('').length === 24) {
@@ -96,6 +105,7 @@ exports.search = async (ctx) => {
     allPeople,
   };
 };
+
 exports.updateUserPhoto = async (ctx) => {
   const photo = await uploadS3('user-photo', ctx.request.files.photo);
   console.log(photo);
@@ -105,6 +115,7 @@ exports.updateUserPhoto = async (ctx) => {
     photo,
   };
 };
+
 exports.createCategory = async (ctx) => {
   const { body } = ctx.request;
   if (body.category === '' || body.category === undefined || body.category === null) {
@@ -122,7 +133,6 @@ exports.createCategory = async (ctx) => {
   }
 };
 exports.getCategory = async (ctx) => {
-  ctx.append('Access-Control-Allow-Origin', '*');
   const categorys = await Category.find({});
   ctx.body = {
     categorys,
