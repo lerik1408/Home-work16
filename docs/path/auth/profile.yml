@@ -1,0 +1,95 @@
+get:
+  summary: Profile
+  description: Profile user
+  tags:
+    - Auth
+  security:
+    - ApiKeyAuth: []
+  responses:
+    "200":
+      content:
+        application/json:
+          description: GET user data
+          schema:
+            type: object
+            properties:
+              registration:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: User Token for Login
+                  user:
+                    type: object
+                    properties:
+                      company:
+                        type: string
+                      country:
+                        type: string
+                      dailyRate:
+                        type: number
+                      email:
+                        type: string
+                      gender:
+                        type: string
+                      name: 
+                        type: string
+                      passwordHash: 
+                        type: string
+                      photo: 
+                        type: string
+                      rating:
+                        type: number
+                      salt:
+                        type: string
+                      stack:
+                        type: string
+                      surname:
+                        type: string
+                      token:
+                        type: string
+                      username:
+                        type: string
+    "401":
+      $ref: "../../models/Unauthorized.yml"
+    "404":
+      $ref: ../../models/404.yml
+    defoult:
+      $ref: "../../models/error.yml"
+put:
+  summary: Profile
+  description: Change profile user
+  tags:
+    - Auth
+  security:
+    - ApiKeyAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            key:
+              type: string
+              description: key and value user change
+  responses:
+    "200":
+      content:
+        application/json:
+          description: get modified Data
+          schema:
+            type: object
+            properties:
+              key:
+                type: string
+                description: key and value user change
+    "404":
+      $ref: ../../models/404.yml
+    "500":
+      content:
+        application/json:
+          description: get modified Data
+          schema:
+            type: string
+    defoult:
+      $ref: "../../models/error.yml"

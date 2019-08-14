@@ -26,11 +26,6 @@ exports.signUp = async (ctx) => {
 };
 
 exports.signIn = async (ctx, next) => {
-  // ctx.set('Access-Control-Allow-Origin', '*');
-  // let body = JSON.parse(ctx.request.body);
-  // let body = ctx.request.body;
-  // ctx.request.body=JSON.parse(ctx.request.body);
-  console.log(ctx.request.body);
   await passport.authenticate('local', (err, user) => {
     if (user) {
       const payload = {
@@ -49,11 +44,11 @@ exports.signIn = async (ctx, next) => {
           gender: user.gender,
           email: user.email,
           photo: user.photo,
-          token: user.token,
         },
       };
       user.save();
     } else {
+      ctx.status = 401;
       ctx.body = {
         error: err,
       };
@@ -108,7 +103,6 @@ exports.search = async (ctx) => {
 
 exports.updateUserPhoto = async (ctx) => {
   const photo = await uploadS3('user-photo', ctx.request.files.photo);
-  console.log(photo);
   // eslint-disable-next-line no-underscore-dangle
   await User.findByIdAndUpdate(ctx.state.user._id, { photo });
   ctx.body = {

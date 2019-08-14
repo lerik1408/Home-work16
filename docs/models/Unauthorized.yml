@@ -1,0 +1,7 @@
+content:
+  application/json:
+    description: GET user data
+    schema:
+      type: string
+      description: ERROR Unauthorized
+

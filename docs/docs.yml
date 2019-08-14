@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: My Fixer API docs
-  description: Made with ❤️️️️
+  description: Made with Anton tutorial
   version: 0.0.1
   host: localhost:3000
 tags:
@@ -9,13 +9,17 @@ tags:
 paths:
   /auth/sign-up:
     $ref: path/auth/signUp.yml
+  /auth/sign-in:
+    $ref: path/auth/signIn.yml
+  /auth/profile:
+    $ref: path/auth/profile.yml
 servers:
   - url: /api
-# components:
-#   securitySchemes:
-#     ApiKeyAuth:
-#       type: apiKey
-#       in: header
-#       name: Authorization
-# security:
-#   - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+security:
+  - ApiKeyAuth: []

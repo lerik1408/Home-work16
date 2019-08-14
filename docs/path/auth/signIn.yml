@@ -1,0 +1,70 @@
+post:
+  summary: Sign In
+  description:  Sign In user
+  tags:
+    - Auth
+  security:
+    - ApiKeyAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              description: email user
+            password:
+              type: string
+              description: password user
+  responses:
+    "200":
+      content:
+        application/json:
+          description: Save in localstore user and token
+          schema:
+            type: object
+            properties:
+              registration:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: User Token for Login
+                  user:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      surname:
+                        type: string
+                      gender:
+                        type: string
+                      email:
+                        type: string
+                      photo:
+                        type: string
+    "401":
+      content:
+        application/json:
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: User doesn't exist! or Incorrect password!
+    "404":
+      $ref: ../../models/404.yml
+    defoult:
+      $ref: "../../models/error.yml"
+    # "401":
+    #   content:
+    #     application/json:
+    #       description: Unauthorized
+    #       schema:
+    #         type: object
+    #         properties:
+    #           error:
+    #             type: string
+    #             description: Incorrect password!

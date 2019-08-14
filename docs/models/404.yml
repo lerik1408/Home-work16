@@ -1,0 +1,9 @@
+# "404":
+content:
+  application/json:
+    description: Not Found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string

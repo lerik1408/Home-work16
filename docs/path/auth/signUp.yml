@@ -3,8 +3,6 @@ post:
   description:  Sign Up user
   tags:
     - Auth
-  security:
-    - ApiKeyAuth: []
   requestBody:
     content:
       application/json:
@@ -67,6 +65,7 @@ post:
                     type: string
                   __v:
                     type: string
-
-    # default:
-    #   $ref: "../../models/error.yml"
+    "404":
+      $ref: ../../models/404.yml
+    default:
+      $ref: "../../models/error.yml"

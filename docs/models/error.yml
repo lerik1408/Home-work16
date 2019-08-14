@@ -1,0 +1,9 @@
+content:
+  application/json:
+    description: Error message
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: ERROR
