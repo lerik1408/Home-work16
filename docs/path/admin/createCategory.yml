@@ -1,0 +1,31 @@
+post:
+  summary: Admin
+  description: Add category
+  tags:
+    - Admin
+  security:
+    - ApiKeyAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            category:
+              type: string
+              description: name category
+  responses:
+    "200":
+      content:
+        application/json:
+          description: get modified Data
+          schema:
+            type: object
+            properties:
+              create:
+                type: boolean
+                description: true
+    "404":
+      $ref: ../../models/404.yml
+    defoult:
+      $ref: "../../models/error.yml"

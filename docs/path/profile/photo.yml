@@ -1,0 +1,16 @@
+put:
+  summary: Photo
+  description: Change photo user
+  tags:
+    - Profile
+  security:
+    - ApiKeyAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            key:
+              type: file
+              description: key and value user change

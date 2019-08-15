@@ -2,7 +2,7 @@ get:
   summary: Profile
   description: Profile user
   tags:
-    - Auth
+    - Profile
   security:
     - ApiKeyAuth: []
   responses:
@@ -60,7 +60,7 @@ put:
   summary: Profile
   description: Change profile user
   tags:
-    - Auth
+    - Profile
   security:
     - ApiKeyAuth: []
   requestBody:

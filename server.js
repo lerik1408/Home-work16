@@ -66,6 +66,9 @@ app.use(async (ctx, next) => {
 
 
 router.use('/auth', require('./app/auth/router').routes());
+router.use('/profile', require('./app/profile/router').routes());
+router.use('/admin', require('./app/admin/router').routes());
+router.use('/search', require('./app/search/router').routes());
 
 app.use(router.routes());
 app.listen(config.get('port'));

@@ -6,13 +6,26 @@ info:
   host: localhost:3000
 tags:
   - name: Auth
+  - name: Profile
+  - name: Admin
+  - name: Search
 paths:
   /auth/sign-up:
     $ref: path/auth/signUp.yml
   /auth/sign-in:
     $ref: path/auth/signIn.yml
-  /auth/profile:
-    $ref: path/auth/profile.yml
+  /profile/person:
+    $ref: path/profile/profile.yml
+  /profile/photo:
+    $ref: path/profile/photo.yml
+  /admin/create-category:
+    $ref: path/admin/createCategory.yml
+  /search/people:
+    $ref: path/search/people.yml
+  /search/people/{userId}:
+    $ref: path/search/people.yml
+  /search/category:
+    $ref: path/search/category.yml
 servers:
   - url: /api
 components:

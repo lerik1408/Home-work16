@@ -1,0 +1,27 @@
+get:
+  summary: GET category
+  description: GET all category
+  tags:
+    - Search
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              category:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                    _v:
+                      type: number
+    "404":
+      $ref: ../../models/404.yml
+    defoult:
+      $ref: "../../models/error.yml"
