@@ -55,11 +55,21 @@ exports.signIn = async (ctx, next) => {
   })(ctx, next);
 };
 
-exports.check = async (ctx) =>{
+exports.check = async (ctx) => {
   const findItem = await User.find({ email: ctx.request.body.email });
+  console.log(ctx.request.body);
+  console.log(findItem);
   ctx.body = {
     people: findItem,
   };
+};
+exports.password = async (ctx) => {
+  const body = ctx.request.body;
+  console.log(body)
+  const findItem = await User.findByIdAndUpdate(body._id,{password: body.password});
+  ctx.body = {
+    password: 'ss',
+  }
 };
 
 exports.sendEmail = async (ctx) => {
