@@ -47,17 +47,19 @@ exports.signIn = async (ctx, next) => {
       };
       user.save();
     } else {
-      ctx.status = 401;
       ctx.body = {
         error: err,
       };
+      // ctx.status = 401;
     }
   })(ctx, next);
 };
 
-exports.test = async (ctx, next) => {
-  ctx();
-  next();
+exports.check = async (ctx) =>{
+  const findItem = await User.find({ email: ctx.request.body.email });
+  ctx.body = {
+    people: findItem,
+  };
 };
 
 exports.sendEmail = async (ctx) => {

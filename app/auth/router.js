@@ -6,7 +6,8 @@ const router = new Router();
 
 router.post('/sign-up', ctrl.signUp);
 router.post('/sign-in', ctrl.signIn);
-router.get('/test', ctrl.test);
+router.post('/check-email', ctrl.check);
+
 
 
 router.get('/email', ctrl.sendEmail);
