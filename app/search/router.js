@@ -3,8 +3,9 @@ const ctrl = require('./controllers');
 
 const router = new Router();
 
-router.get('/people/:id', ctrl.search);
+router.get('/profile:id', ctrl.profile);
 router.get('/people', ctrl.search);
+router.post('/test', ctrl.test)
 
 router.get('/category', ctrl.getCategory);
 

@@ -27,6 +27,31 @@ exports.search = async (ctx) => {
     allPeople,
   };
 };
+exports.profile = async (ctx) => {
+  const profile = await User.findById(ctx.params.id).populate('stack');
+  ctx.body = {
+    profile,
+  };
+};
+exports.test = async (ctx) => {
+  const { body } = ctx.request;
+  const itemsFound = {};
+  if (body.category !== '' && body.category !== 'All') {
+    itemsFound.stack = body.category;
+  }
+  if (body.name !== '') {
+    itemsFound.$or = [{
+      name: {
+        $regex: body.name,
+        $options: 'i',
+      },
+    }];
+  }
+  const allPeople = await User.find(itemsFound).populate('stack');
+  ctx.body = {
+    allPeople,
+  };
+};
 exports.getCategory = async (ctx) => {
   const categorys = await Category.find({});
   ctx.body = {

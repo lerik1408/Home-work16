@@ -16,9 +16,10 @@ exports.signUp = async (ctx) => {
     email: body.email,
     password: body.password,
     // eslint-disable-next-line no-underscore-dangle
-    stack: mongoose.Types.ObjectId(idCatagory[1]._id),
+    stack: mongoose.Types.ObjectId(idCatagory[0]._id),
   });
   await user.save();
+  ctx.status = 201;
   ctx.body = {
     registration: user,
   };
@@ -57,18 +58,15 @@ exports.signIn = async (ctx, next) => {
 
 exports.check = async (ctx) => {
   const findItem = await User.find({ email: ctx.request.body.email });
-  console.log(ctx.request.body);
-  console.log(findItem);
   ctx.body = {
     people: findItem,
   };
 };
 exports.password = async (ctx) => {
   const body = ctx.request.body;
-  console.log(body)
-  const findItem = await User.findByIdAndUpdate(body._id,{password: body.password});
+  await User.findByIdAndDelete(body._id);
   ctx.body = {
-    password: 'ss',
+    password: body.password,
   }
 };
 
