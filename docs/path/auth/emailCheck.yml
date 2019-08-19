@@ -1,29 +1,27 @@
 post:
-  summary: Getting people after a search
-  description: Getting people after a search
+  summary: Check Email in DB
+  description: Check Email in DB
   tags:
-    - Search
+    - Auth
   requestBody:
     content:
       application/json:
         schema:
           type: object
           properties:
-            category:
+            email:
               type: string
-            name:
-              type: string
+              description: email user
   responses:
     "200":
       content:
         application/json:
+          description: Get a user with current mail
           schema:
             type: object
             properties:
-              AllPeople:
-                type: array
-                items:
-                  $ref: ../../models/userModel.yml
+              people:
+                $ref: ../../models/userModel.yml
     "404":
       $ref: ../../models/404.yml
     defoult:

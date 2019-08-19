@@ -1,18 +1,8 @@
-post:
-  summary: Getting people after a search
-  description: Getting people after a search
+get:
+  summary: GET profile
+  description: GET profile
   tags:
     - Search
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            category:
-              type: string
-            name:
-              type: string
   responses:
     "200":
       content:
@@ -20,7 +10,7 @@ post:
           schema:
             type: object
             properties:
-              AllPeople:
+              prodile:
                 type: array
                 items:
                   $ref: ../../models/userModel.yml

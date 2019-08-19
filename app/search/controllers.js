@@ -33,7 +33,7 @@ exports.profile = async (ctx) => {
     profile,
   };
 };
-exports.test = async (ctx) => {
+exports.people = async (ctx) => {
   const { body } = ctx.request;
   const itemsFound = {};
   if (body.category !== '' && body.category !== 'All') {

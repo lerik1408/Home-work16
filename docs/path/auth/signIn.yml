@@ -3,8 +3,6 @@ post:
   description:  Sign In user
   tags:
     - Auth
-  security:
-    - ApiKeyAuth: []
   requestBody:
     content:
       application/json:

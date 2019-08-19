@@ -67,7 +67,7 @@ exports.password = async (ctx) => {
   await User.findByIdAndDelete(body._id);
   ctx.body = {
     password: body.password,
-  }
+  };
 };
 
 exports.sendEmail = async (ctx) => {

@@ -1,0 +1,47 @@
+type: array
+items:
+  type: object
+  properties:
+    photo:
+      type: string
+    gender:
+      type: string
+    stack:
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+          name:
+            type: string
+          _v:
+            type: number
+    country:
+      type: string
+    dailyRate:
+      type: number
+    rating:
+      type: number
+    token:
+      type: string
+    _id:
+      type: string
+    name:
+      type: string
+    surname:
+      type: string
+    username:
+      type: string
+    email:
+      type: string
+    salt:
+      type: string
+    passwordHash:
+      type: string
+    __v:
+      type: number
+    mobile:
+      type: string
+    company:
+      type: string

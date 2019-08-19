@@ -14,6 +14,10 @@ paths:
     $ref: path/auth/signUp.yml
   /auth/sign-in:
     $ref: path/auth/signIn.yml
+  /auth/check-email:
+    $ref: path/auth/emailCheck.yml
+  /auth/password:
+    $ref: path/auth/password.yml
   /profile/person:
     $ref: path/profile/profile.yml
   /profile/photo:
@@ -22,8 +26,8 @@ paths:
     $ref: path/admin/createCategory.yml
   /search/people:
     $ref: path/search/people.yml
-  /search/people/{userId}:
-    $ref: path/search/people.yml
+  /search/profile/{userId}:
+    $ref: path/search/profile.yml
   /search/category:
     $ref: path/search/category.yml
 servers:
@@ -34,5 +38,3 @@ components:
       type: apiKey
       in: header
       name: Authorization
-security:
-  - ApiKeyAuth: []

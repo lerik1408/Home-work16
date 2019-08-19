@@ -4,8 +4,7 @@ const ctrl = require('./controllers');
 const router = new Router();
 
 router.get('/profile:id', ctrl.profile);
-router.get('/people', ctrl.search);
-router.post('/test', ctrl.test)
+router.post('/people', ctrl.people);
 
 router.get('/category', ctrl.getCategory);
 
