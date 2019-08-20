@@ -33,7 +33,7 @@ app.use(
   koaSwagger({
     routePrefix: '/docs',
     swaggerOptions: {
-      url: 'http://localhost:3000/docs.yml', // example path to json
+      url: 'https://api-my-fixer.herokuapp.com/docs.yml', // example path to json
     },
   }),
 );

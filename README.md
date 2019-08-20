@@ -24,4 +24,4 @@ module.exports = {
 ```
 2. Run `nodemon server`
 # Documentation
-[Docs](http://localhost:3000/docs)
+[Docs](https://api-my-fixer.herokuapp.com/docs)
