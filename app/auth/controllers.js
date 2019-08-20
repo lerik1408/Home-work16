@@ -16,7 +16,7 @@ exports.signUp = async (ctx) => {
     email: body.email,
     password: body.password,
     // eslint-disable-next-line no-underscore-dangle
-    stack: mongoose.Types.ObjectId(idCatagory[0]._id),
+    stack: mongoose.Types.ObjectId(idCatagory[2]._id),
   });
   await user.save();
   ctx.status = 201;

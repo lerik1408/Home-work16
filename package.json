@@ -1,5 +1,5 @@
 {
-  "name": "HomeWork9",
+  "name": "HomeWork16",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -10,13 +10,13 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@sendgrid/mail": "^6.4.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
     "pow-mongodb-fixtures": "^0.14.0"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "@koa/cors": "2",
     "aws-sdk": "^2.507.0",
     "config": "^3.2.2",
