@@ -69,9 +69,49 @@ put:
         schema:
           type: object
           properties:
-            key:
+            photo:
               type: string
-              description: key and value user change
+            gender:
+              type: string
+            stack:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  name:
+                    type: string
+                  _v:
+                    type: number
+            country:
+              type: string
+            dailyRate:
+              type: number
+            rating:
+              type: number
+            token:
+              type: string
+            _id:
+              type: string
+            name:
+              type: string
+            surname:
+              type: string
+            username:
+              type: string
+            email:
+              type: string
+            salt:
+              type: string
+            passwordHash:
+              type: string
+            __v:
+              type: number
+            mobile:
+              type: string
+            company:
+              type: string
   responses:
     "200":
       content:
@@ -80,9 +120,49 @@ put:
           schema:
             type: object
             properties:
-              key:
+              photo:
                 type: string
-                description: key and value user change
+              gender:
+                type: string
+              stack:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                    _v:
+                      type: number
+              country:
+                type: string
+              dailyRate:
+                type: number
+              rating:
+                type: number
+              token:
+                type: string
+              _id:
+                type: string
+              name:
+                type: string
+              surname:
+                type: string
+              username:
+                type: string
+              email:
+                type: string
+              salt:
+                type: string
+              passwordHash:
+                type: string
+              __v:
+                type: number
+              mobile:
+                type: string
+              company:
+                type: string
     "404":
       $ref: ../../models/404.yml
     "500":

@@ -17,13 +17,6 @@ mongoose.connect(config.get('databaseUrl'), {
 
 passport.initialize();
 
-
-// mongoose.connect('mongodb+srv://lerik1408:Okf123fu@cluster0-osbtr.gcp.mongodb.net/test?retryWrites=true&w=majority', {
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-// });
-
-
 const app = new Koa();
 const router = new Router({
   prefix: '/api',
@@ -33,7 +26,8 @@ app.use(
   koaSwagger({
     routePrefix: '/docs',
     swaggerOptions: {
-      url: 'https://api-my-fixer.herokuapp.com/docs.yml', // example path to json
+      url: 'https://api-my-fixer.herokuapp.com/docs.yml',
+      // url: 'http://localhost:3000/docs.yml',
     },
   }),
 );

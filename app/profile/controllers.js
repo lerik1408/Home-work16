@@ -8,13 +8,19 @@ exports.profile = async (ctx) => {
     user,
   };
 };
+// exports.profileUpdate = async (ctx) => {
+//   const key = Object.keys(ctx.request.body)[0];
+//   // eslint-disable-next-line no-underscore-dangle
+//   await User.findByIdAndUpdate(ctx.state.user._id, { [key]: ctx.request.body[key] });
+//   ctx.body = {
+//     [key]: ctx.request.body[key],
+//   };
+// };
 exports.profileUpdate = async (ctx) => {
-  const key = Object.keys(ctx.request.body)[0];
-  // eslint-disable-next-line no-underscore-dangle
-  await User.findByIdAndUpdate(ctx.state.user._id, { [key]: ctx.request.body[key] });
-  ctx.body = {
-    [key]: ctx.request.body[key],
-  };
+  console.log(ctx.request.body);
+  const body = ctx.request.body;
+  await User.findByIdAndUpdate(body._id, body);
+  ctx.body = body;
 };
 exports.updateUserPhoto = async (ctx) => {
   const photo = await uploadS3('user-photo', ctx.request.files.photo);
