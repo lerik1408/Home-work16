@@ -35,19 +35,34 @@ exports.profile = async (ctx) => {
 };
 exports.people = async (ctx) => {
   const { body } = ctx.request;
-  const itemsFound = {};
-  if (body.category !== '' && body.category !== 'All') {
-    itemsFound.stack = body.category;
+  const query = {};
+  const sort = {};
+  // Category
+  if (body.category !== '0') {
+    query.stack = body.category;
   }
+  // Sort
+  if (body.sort !== '0') {
+    if (body.sort === '1') {
+      sort.dailyRate = 1;
+    } else if (body.sort === '2') {
+      sort.dailyRate = -1;
+    } else if (body.sort === '3') {
+      sort.rating = 1;
+    } else {
+      sort.rating = -1;
+    }
+  }
+  // Name
   if (body.name !== '') {
-    itemsFound.$or = [{
+    query.$or = [{
       name: {
         $regex: body.name,
         $options: 'i',
       },
     }];
   }
-  const allPeople = await User.find(itemsFound).populate('stack');
+  const allPeople = await User.find(query).sort({ ...sort }).populate('stack');
   ctx.body = {
     allPeople,
   };
