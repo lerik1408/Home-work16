@@ -34,7 +34,7 @@ module.exports = {
 # Done
 
 1. Fix password recovery
-2. Fix search user
+2. Fix search user (A little different than you asked)
 3. README written
 4. Deploy in Heroku
 # No done
