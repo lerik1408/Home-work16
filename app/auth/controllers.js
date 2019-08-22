@@ -63,8 +63,10 @@ exports.check = async (ctx) => {
   };
 };
 exports.password = async (ctx) => {
-  const body = ctx.request.body;
-  await User.findByIdAndDelete(body._id);
+  const { body } = ctx.request;
+  const user = await User.findById(body._id);
+  user.password = body.password;
+  user.save();
   ctx.body = {
     password: body.password,
   };
