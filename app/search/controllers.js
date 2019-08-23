@@ -36,9 +36,13 @@ exports.people = async (ctx) => {
       },
     }];
   }
-  const allPeople = await User.find(query).sort({ ...sort }).populate('stack');
+  const id = await ctx.params.id;
+  const allPeople = await User.find(query).sort({ ...sort }).limit(6).skip((id - 1) * 6).populate('stack');
+  const pages = await User.find(query).sort({ ...sort });
+  console.log(pages.length);
   ctx.body = {
     allPeople,
+    pages: pages.length,
   };
 };
 exports.getCategory = async (ctx) => {
