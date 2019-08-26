@@ -2,7 +2,7 @@ const User = require('../models/user');
 const uploadS3 = require('../utils/uploadS3');
 
 exports.profile = async (ctx) => {
-  const user = await User.findById(ctx.state.user._id);
+  const user = await User.findById(ctx.state.user._id).populate('stack');
   ctx.body = {
     user,
   };
