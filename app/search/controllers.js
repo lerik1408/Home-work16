@@ -38,7 +38,7 @@ exports.people = async (ctx) => {
     }];
   }
   const id = await ctx.params.id;
-  const allPeople = await User.find(query).sort({ ...sort }).populate('stack');
+  const allPeople = await User.find(query).sort({ ...sort }).populate('stack')
   ctx.body = {
     allPeople,
   };
