@@ -19,7 +19,7 @@ exports.updateUserCategory = async (ctx) => {
 };
 exports.profileUpdate = async (ctx) => {
   console.log(ctx.request.body);
-  const body = ctx.request.body;
+  const { body } = ctx.request;
   await User.findByIdAndUpdate(body._id, body);
   ctx.body = body;
 };
