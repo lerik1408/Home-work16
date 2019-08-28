@@ -42,10 +42,7 @@ const userSchema = new mongoose.Schema({
   stack: [{
     ref: Category,
     type: mongoose.Schema.Types.ObjectId,
-    // default: 'Front-end',
   }],
-    // enum: ['Front-end','Back-end'],
-    // default: 'Front-end',
   country: {
     type: String,
     default: 'Ukraine',
@@ -69,10 +66,6 @@ const userSchema = new mongoose.Schema({
   },
   company: {
     type: String,
-  },
-  token: {
-    type: String,
-    default: "tok",
   },
 });
 
