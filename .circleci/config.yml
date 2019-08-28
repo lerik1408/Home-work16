@@ -11,7 +11,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            npm i
+            yarn install
       - save_cache:
           key: dependency-cache-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
@@ -19,4 +19,4 @@ jobs:
       - run:
           name: Lint code
           command: |
-            npm run lint1
+            yarn run lint1
