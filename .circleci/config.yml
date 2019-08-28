@@ -6,19 +6,17 @@ jobs:
       - image: circleci/node:10.15.1
     steps:
       - checkout
-      # Download and cache dependencies
       - restore_cache:
-          keys:
-            - dependency-cache-{{ .Branch }}-{{ checksum "package.json" }}
-      - run: 
+          key: dependency-cache-{{ .Branch }}-{{ checksum "package.json" }}
+      - run:
           name: Install dependencies
           command: |
-            yarn install
+            npm i
       - save_cache:
           key: dependency-cache-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - 'node_modules'
       - run:
-          name: Lint Code
+          name: Lint code
           command: |
-            yarn run lint
+            npm run lint
