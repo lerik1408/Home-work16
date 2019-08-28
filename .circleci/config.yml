@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/circleci-Home-work16
+    docker:
+      - image: circleci/node:10.15.1
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - dependency-cache-{{ .Branch }}-{{ checksum "package.json" }}
+      - run: 
+          name: Install dependencies
+          command: |
+            yarn install
+      - save_cache:
+          key: dependency-cache-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - 'node_modules'
+      - run:
+          name: Hello
+          command: |
+            echo "Hello, World"
