@@ -19,6 +19,6 @@ jobs:
           paths:
             - 'node_modules'
       - run:
-          name: Hello
+          name: Lint Code
           command: |
-            echo "Hello, World"
+            yarn lint
