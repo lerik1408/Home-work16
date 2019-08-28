@@ -21,4 +21,4 @@ jobs:
       - run:
           name: Lint Code
           command: |
-            yarn lint
+            yarn run lint
