@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/circleci-koa-demo
+    working_directory: ~/circleci-HomeWork16
     docker:
       - image: circleci/node:10.15.1
     steps:
