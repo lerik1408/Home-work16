@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint ./**/*.js",
+    "lint1": "eslint ./server.js",
     "fix": "eslint --fix ./**/*.js",
     "fixtures": "node app/fixtures/load.js"
   },
