@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            
+            docker login -u $DOCKER_CLOUD_USERNAME -p $DOCKER_CLOUD_PASSWORD
             docker build -t lerik1408/fixer-api:latest .
             docker push lerik1408/fixer-api:latest
 #   deploy:
