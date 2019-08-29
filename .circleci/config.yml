@@ -24,9 +24,9 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker login -u $DOCKER_CLOUD_USERNAME -p $DOCKER_CLOUD_PASSWORD
-            docker build -t $DOCKER_HUB_USERNAME/$CIRCLE_PROJECT_PEPONAME:latest .
-            docker push $DOCKER_HUB_USERNAME/$CIRCLE_PROJECT_PEPONAME:latest
+            
+            docker build -t lerik1408/fixer-api:latest .
+            docker push lerik1408/fixer-api:latest
 #   deploy:
 #     docker:
 #       - image: buildpack-deps:trusty
