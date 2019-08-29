@@ -6,6 +6,7 @@ jobs:
       - image: circleci/node:10.15.1
     steps:
       - checkout
+      - setup_remote_docker
       - restore_cache:
           key: dependency-cache-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
@@ -20,23 +21,29 @@ jobs:
           name: Lint code
           command: |
             yarn run lint1
-  deploy:
-    docker:
-      - image: buildpack-deps:trusty
-    steps:
-      - checkout
       - run:
-          name: Deploy to Heroku
+          name: Build docker image
           command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+            docker login -u $DOCKER_CLOUD_USERNAME -p $DOCKER_CLOUD_PASSWORD
+            docker build -t $DOCKER_HUB_USERNAME/$CIRCLE_PROJECT_PEPONAME:latest .
+            docker push $DOCKER_HUB_USERNAME/$CIRCLE_PROJECT_PEPONAME:latest
+#   deploy:
+#     docker:
+#       - image: buildpack-deps:trusty
+#     steps:
+#       - checkout
+#       - run:
+#           name: Deploy to Heroku
+#           command: |
+#             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+# workflows:
+#   version: 2
+#   build-deploy:
+#     jobs:
+#       - build
+#       - deploy:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#               only: master
