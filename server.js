@@ -65,4 +65,4 @@ router.use('/admin', require('./app/admin/router').routes());
 router.use('/search', require('./app/search/router').routes());
 
 app.use(router.routes());
-app.listen(config.get('port'));
+module.exports = app.listen(config.get('port'));

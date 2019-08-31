@@ -7,13 +7,20 @@
     "lint": "eslint ./**/*.js",
     "lint1": "eslint ./server.js",
     "fix": "eslint --fix ./**/*.js",
-    "fixtures": "node app/fixtures/load.js"
+    "fixtures": "node app/fixtures/load.js",
+    "test": "mocha ./app/test/*.test.js --timeout 15000 --exit",
+    "coverage": "nyc yarn run test",
+    "coverage-report": "nyc report --reporter=html"
   },
   "license": "MIT",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^5.16.0",
+    "nyc": "^14.1.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
+    "mocha": "^6.2.0",
     "pow-mongodb-fixtures": "^0.14.0"
   },
   "dependencies": {

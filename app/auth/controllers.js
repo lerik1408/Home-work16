@@ -45,7 +45,6 @@ exports.signIn = async (ctx, next) => {
         user: {
           name: user.name,
           surname: user.surname,
-          gender: user.gender,
           email: user.email,
           photo: user.photo,
         },

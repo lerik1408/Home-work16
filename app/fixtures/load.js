@@ -1,4 +1,5 @@
 const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const fixtures = require('pow-mongodb-fixtures').connect('mongodb://localhost:27017/user');
 
 fixtures.load(path.join(__dirname, '/user.js'), (err) => {

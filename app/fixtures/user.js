@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const id = require('pow-mongodb-fixtures').createObjectId;
 
 exports.users = [

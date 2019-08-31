@@ -22,6 +22,14 @@ jobs:
           command: |
             yarn run lint1
       - run:
+          name: Run test
+          command: yarn run test
+      - run:
+          name: Test report
+          command: yarn run coverage-report
+      - store_artifacts:
+          path: /coverage
+      - run:
           name: Build docker image
           command: |
             docker login -u $DOCKER_CLOUD_USERNAME -p $DOCKER_CLOUD_PASSWORD
