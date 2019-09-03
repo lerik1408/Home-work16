@@ -26,8 +26,8 @@ app.use(
   koaSwagger({
     routePrefix: '/docs',
     swaggerOptions: {
-      url: 'https://api-my-fixer.herokuapp.com/docs.yml',
-      // url: 'http://localhost:3000/docs.yml',
+      // url: 'https://api-my-fixer.herokuapp.com/docs.yml',
+      url: 'http://http://3.18.1.63/docs.yml',
     },
   }),
 );
