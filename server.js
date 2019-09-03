@@ -27,7 +27,7 @@ app.use(
     routePrefix: '/docs',
     swaggerOptions: {
       // url: 'https://api-my-fixer.herokuapp.com/docs.yml',
-      url: 'http://http://3.18.1.63/docs.yml',
+      url: 'http://3.18.1.63/docs.yml',
     },
   }),
 );
