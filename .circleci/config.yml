@@ -23,10 +23,12 @@ jobs:
             yarn run lint1
       - run:
           name: Add config
-          command: export NODE_ENV=production
+          command: yarn run add-config
       - run:
           name: Run test
-          command: yarn run test
+          command: |
+            export NODE_ENV=test
+            yarn run test
       - run:
           name: Test report
           command: yarn run coverage-report

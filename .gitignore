@@ -3,3 +3,4 @@ app/template/map/content.njk
 config/default.js
 .nyc_output/
 coverage/
+my-fixer.pem

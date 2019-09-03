@@ -14,7 +14,7 @@ module.exports = new LocalStrategy(opts, (req, email, password, done) => {
       return done(err);
     }
     if (!user) {
-      return done('User doesn\'t exist!', false);
+      return done('User doesn\'t exist!', false); 
     }
     if (!user.checkPassword(password)) {
       return done('Incorrect password!', false);

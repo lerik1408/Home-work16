@@ -10,7 +10,8 @@
     "fixtures": "node app/fixtures/load.js",
     "test": "mocha ./app/test/*.test.js --timeout 15000 --exit",
     "coverage": "nyc yarn run test",
-    "coverage-report": "nyc report --reporter=html"
+    "coverage-report": "nyc report --reporter=html",
+    "add-config": "export NODE_ENV=test"
   },
   "license": "MIT",
   "devDependencies": {
