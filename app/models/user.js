@@ -47,6 +47,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'Ukraine',
   },
+  location: {
+    type: { type: String },
+    coordinates: [],
+  },
   dailyRate: {
     type: Number,
     default: 500,
@@ -67,7 +71,10 @@ const userSchema = new mongoose.Schema({
   company: {
     type: String,
   },
+
 });
+
+userSchema.index({ location: '2dsphere' });
 
 userSchema.virtual('password')
   .set(function (password) {

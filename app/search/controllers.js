@@ -50,3 +50,18 @@ exports.getCategory = async (ctx) => {
     categorys,
   };
 };
+
+exports.location = async (ctx) => {
+  const people = await User.find({
+    location: {
+      $near: {
+        $maxDistance: 10000,
+        $geometry: {
+          type: 'Point',
+          coordinates: [30.425441, 50.448254],
+        },
+      },
+    },
+  }).populate('stack');
+  ctx.body = people;
+}

@@ -17,6 +17,13 @@ exports.signUp = async (ctx) => {
     email: body.email,
     password: body.password,
     stack: mongoose.Types.ObjectId(idCatagory[0]._id),
+    location: {
+      type: 'Point',
+      coordinates: [
+        30.425659,
+        50.446209,
+      ],
+    },
   });
   await user.save();
   const html = nunjucks.render('./app/templates/signUp.njk', body);
