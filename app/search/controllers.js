@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const User = require('../models/user');
 const Category = require('../models/category');
 
@@ -49,6 +50,19 @@ exports.getCategory = async (ctx) => {
   ctx.body = {
     categorys,
   };
+};
+
+exports.cheat = async (ctx) => {
+  const user = await User.find({});
+  console.log(user);
+  user.forEach((element) => {
+    // eslint-disable-next-line no-param-reassign
+    element.location.type = 'Point';
+    element.location.coordinates = [30.422222, 50.446629];
+    element.save();
+  });
+  // user.save();
+  ctx.body = user;
 };
 
 exports.location = async (ctx) => {

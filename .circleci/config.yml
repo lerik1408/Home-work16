@@ -17,21 +17,21 @@ jobs:
           key: dependency-cache-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - 'node_modules'
-      - run:
-          name: Lint code
-          command: |
-            yarn run lint1
-      - run:
-          name: Add config
-          command: yarn run add-config
-      - run:
-          name: Run test
-          command: |
-            export NODE_ENV=production
-            yarn run test
-      - run:
-          name: Test report
-          command: yarn run coverage-report
+      # - run:
+      #     name: Lint code
+      #     command: |
+      #       yarn run lint1
+      # - run:
+      #     name: Add config
+      #     command: yarn run add-config
+      # - run:
+      #     name: Run test
+      #     command: |
+      #       export NODE_ENV=production
+      #       yarn run test
+      # - run:
+      #     name: Test report
+      #     command: yarn run coverage-report
       - store_artifacts:
           path: /coverage
       - run:
@@ -40,23 +40,23 @@ jobs:
             docker login -u $DOCKER_CLOUD_USERNAME -p $DOCKER_CLOUD_PASSWORD
             docker build -t lerik1408/fixer-api:latest .
             docker push lerik1408/fixer-api:latest
-#   deploy:
-#     docker:
-#       - image: buildpack-deps:trusty
-#     steps:
-#       - checkout
-#       - run:
-#           name: Deploy to Heroku
-#           command: |
-#             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-# workflows:
-#   version: 2
-#   build-deploy:
-#     jobs:
-#       - build
-#       - deploy:
-#           requires:
-#             - build
-#           filters:
-#             branches:
-#               only: master
+  deploy:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
